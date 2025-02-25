@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmet Furkan Bilgin | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-color: #2A2A2A;
+            --secondary-color: #007BFF;
+            --text-color: #F8F9FA;
+        }
+
+        body {
+            background: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,123,255,0.1) 0%, transparent 70%);
+            animation: pulse 8s infinite;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.5s;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #007BFF, #00C8FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 5rem 0;
+        }
+
+        .skills h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #007BFF, #00C8FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skill-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: #333;
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+            text-align: center;
+        }
+
+        .skill-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,123,255,0.2);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: rotate(15deg) scale(1.2);
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card p {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 5rem 0;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            position: relative;
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .project-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:hover {
+            transform: rotateX(5deg) rotateY(5deg) scale(1.05);
+        }
+
+        .project-image {
+            height: 200px;
+            background: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: linear-gradient(45deg, transparent 50%, rgba(0,123,255,0.1) 100%);
+            animation: shine 3s infinite;
+        }
+
+        /* Contact ve Social */
+        .contact {
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            font-size: 2rem;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        @keyframes shine {
+            to {
+                transform: translateX(100%);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Ahmet Furkan Bilgin</h1>
+                <h3>Bilgisayar Mühendisliği Öğrencisi</h3>
+                <p>GTÜ'de 1. sınıf öğrencisi | Full Stack Developer & Mobile Developer</p>
+                <div class="social-links">
+                    <a href="https://tr.linkedin.com/in/ahmet-furkan-bilgin-b991641b8" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yetenekler Bölümü -->
+    <section class="skills">
+        <div class="container">
+            <h2>Yeteneklerim</h2>
+            <div class="skill-cards">
+                <div class="skill-card">
+                    <i class="fab fa-python skill-icon"></i>
+                    <h3>Web Geliştirme</h3>
+                    <p>Flask ile backend ve modern frontend teknolojileri</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-android skill-icon"></i>
+                    <h3>Mobil Uygulama</h3>
+                    <p>Flutter ile cross-platform mobil uygulama geliştirme</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-brain skill-icon"></i>
+                    <h3>Yapay Zeka</h3>
+                    <p>Temel seviye TensorFlow ile makine öğrenmesi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!--
+    <section class="projects">
+        <div class="container">
+            <h2>Projelerim</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-laptop-code fa-3x"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>Web Projesi</h3>
+                        <p>Flask ile geliştirilmiş modern web uygulaması</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+-->
+    <script>
+        // Scroll animasyonları
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-card, .project-card').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Mouse parallax efekti
+        document.addEventListener('mousemove', (e) => {
+            const hero = document.querySelector('.hero');
+            const x = (window.innerWidth - e.pageX) / 50;
+            const y = (window.innerHeight - e.pageY) / 50;
+            hero.style.transform = `translateX(${x}px) translateY(${y}px)`;
+        });
+    </script>
+</body>
+</html>
